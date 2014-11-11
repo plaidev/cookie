@@ -92,7 +92,11 @@ function parse(str) {
   if ('' == pairs[0]) return obj;
   for (var i = 0; i < pairs.length; ++i) {
     pair = pairs[i].split('=');
-    obj[decode(pair[0])] = decode(pair[1]);
+    try {
+      obj[decode(pair[0])] = decode(pair[1]);
+    } catch (e) {
+      debug('error `parse(%o)` - %o', value, e);
+    }
   }
   return obj;
 }
