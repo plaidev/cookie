@@ -14,7 +14,7 @@
       "./index.js": "index.js"
     }
   },
-  "repository": "component/cookie",
+  "repository": "t5kz/cookie",
   "scripts": {
     "test": "make test"
   },
