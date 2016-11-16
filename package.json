@@ -14,7 +14,10 @@
       "./index.js": "index.js"
     }
   },
-  "repository": "t5kz/cookie",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/t5kz/cookie.git"
+  }
   "scripts": {
     "test": "make test"
   },
