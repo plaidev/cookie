@@ -40,7 +40,7 @@ function set(name, value, options) {
   options = options || {};
   var str = encode(name) + '=' + encode(value);
 
-  if (null == value) options.max-age = -1;
+  if (null == value) options['max-age'] = -1;
 
   if (options.maxage) {
     options.expires = new Date(+new Date + options.maxage);
