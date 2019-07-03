@@ -107,7 +107,7 @@ function encode(value){
   try {
     return encodeURIComponent(value);
   } catch (e) {
-    console.warn('error `parse(' + value +')` - ' + e)
+    console.warn('error `encode(' + value +')` - ' + e)
   }
 }
 
@@ -119,6 +119,6 @@ function decode(value) {
   try {
     return decodeURIComponent(value);
   } catch (e) {
-    console.warn('error `parse(' + value +')` - ' + e)
+    console.warn('error `decode(' + value +')` - ' + e)
   }
 }
