@@ -90,7 +90,12 @@ function parse(str) {
   if ('' == pairs[0]) return obj;
   for (var i = 0; i < pairs.length; ++i) {
     pair = pairs[i].split('=');
-    if (pair[0].startsWith('krt') || pair[0].startsWith('ktid') || pair[0].startsWith('__pck__')) {
+
+    // karteに関係するcookieのみデコードする
+    if (pair[0].startsWith('krt') || 
+        pair[0].startsWith('ktid') ||
+        pair[0].startsWith('__pck__') ||
+        pair[0].startsWith('test')) {
       try {
         obj[decode(pair[0])] = decode(pair[1]);
       } catch (e) {
