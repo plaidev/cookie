@@ -13,7 +13,7 @@
  * @api public
  */
 
-module.exports = function(name, value, options){
+module.exports = function (name, value, options) {
   switch (arguments.length) {
     case 3:
     case 2:
@@ -92,14 +92,11 @@ function parse(str) {
     pair = pairs[i].split('=');
 
     // karteに関係するcookieのみデコードする
-    if (pair[0].startsWith('krt') || 
-        pair[0].startsWith('ktid') ||
-        pair[0].startsWith('__pck__') ||
-        pair[0].startsWith('test')) {
+    if (isKarteRelatedCookieKey(pair[0])) {
       try {
         obj[decode(pair[0])] = decode(pair[1]);
       } catch (e) {
-        console.warn('error `parse(' + value +')` - ' + e)
+        console.warn('error `parse(' + value + ')` - ' + e)
       }
     }
   }
@@ -110,11 +107,11 @@ function parse(str) {
  * Encode.
  */
 
-function encode(value){
+function encode(value) {
   try {
     return encodeURIComponent(value);
   } catch (e) {
-    console.warn('error `encode(' + value +')` - ' + e)
+    console.warn('error `encode(' + value + ')` - ' + e)
   }
 }
 
@@ -126,6 +123,29 @@ function decode(value) {
   try {
     return decodeURIComponent(value);
   } catch (e) {
-    console.warn('error `decode(' + value +')` - ' + e)
+    console.warn('error `decode(' + value + ')` - ' + e)
   }
+}
+
+/**
+ * Returns whether a cookie key related to karte or not.
+ *
+ * @param {String} cookieKey
+ * @return {Boolean} 
+ * @api private
+ */
+
+function isKarteRelatedCookieKey(cookieKey) {
+  if (!cookieKey) {
+    return false;
+  }
+
+  if (cookieKey.substr(0, 'krt'.length) === 'krt' ||
+    cookieKey.substr(0, 'ktid'.length) === 'ktid' ||
+    cookieKey.substr(0, '__pck__'.length) === '__pck__' ||
+    cookieKey.substr(0, 'test'.length) === 'test') {
+
+    return true;
+  }
+  return false;
 }
