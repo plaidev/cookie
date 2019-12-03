@@ -48,6 +48,7 @@ function set(name, value, options) {
   if (options.domain) str += '; domain=' + options.domain;
   if (options.expires) str += '; expires=' + options.expires.toUTCString();
   if (options.secure) str += '; secure';
+  if (options.sameSite) str += '; samesite=' + options.sameSite;
 
   document.cookie = str;
 }
